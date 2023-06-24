@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="assets/reset.css" />
-    <link href="assets/styles.css" />
+    <link rel="stylesheet" href="./assets/reset.css" />
+    <link rel="stylesheet" href="./assets/styles.css" />
 </head>
 
 <body>
@@ -20,33 +20,35 @@
     </header>
 
     <main>
-        <section id="start-page">
-            <h1>Code Quiz</h1>
-            <p>Try to answer all of the questions correctly before the time runs out.  Each time you choose the wrong answer, time will be deducted from the clock.  Good luck!</p>
-            <button>Start</button>
-        </section>
+        <div id="container">
+            <section id="start-page" class="section">
+                <h1>Code Quiz</h1>
+                <p>Try to answer all of the questions correctly before the time runs out.  Each time you choose the wrong answer, time will be deducted from the clock.  Good luck!</p>
+                <button>Start</button>
+            </section>
 
-        <section id="questions-page">
-            <h2>Question:</h2>
+            <section id="questions-page" class="section">
+                <h2>Question:</h2>
 
-        </section>
+            </section>
 
-        <section id="end-page">
-            <h2>Final Score:</h2><span id="score-display">0</span>
-            <p>Enter your initials:
-                <input type="text" name="initials"/>
-                <button id="submit-score-button">Submit</button>
-            </p>
-        </section>
+            <section id="end-page" class="section">
+                <h2>Final Score:</h2><span id="score-display">0</span>
+                <p>Enter your initials:
+                    <input type="text" name="initials"/>
+                    <button id="submit-score-button">Submit</button>
+                </p>
+            </section>
 
-        <section id="highscore-page">
-            <h2>High Scores</h2>
+            <section id="highscore-page" class="section">
+                <h2>High Scores</h2>
 
-        </section>
+            </section>
+        </div>
     </main>
 
     <scripts src="assets/scripts.js"></scripts>
-    
+
 </body>
 
 </html>
