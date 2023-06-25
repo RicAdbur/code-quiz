@@ -2,14 +2,20 @@
 var highScoreLink = document.getElementById("high-score-link");
 var timer = document.getElementById("timer");
 var startButton = document.getElementById("start-button");
+var choiceButton1 = document.getElementById("choice1")
+var choiceButton2 = document.getElementById("choice2")
+var choiceButton3 = document.getElementById("choice3")
+var choiceButton4 = document.getElementById("choice4")
 var scoreDisplay = document.getElementById("score-display");
 var inputInitials = document.getElementById("initials");
 var submitButton = document.getElementById("submit-score-button");
-var feedback = document.getElementById("feedback")
+var feedbackSpan = document.getElementById("feedback")
 
 
 // Defining other global variables
 var score = 0;
+var initials = ""
+var completedTime
 
 
 
@@ -57,14 +63,12 @@ console.log(questions[0].answer);
         // append first question to "question-span"
         // append choices for that question to <ul> beneath "question-span"
     // Select a choice
-        // compare user choice with questions[i].answer
+        // for each user choice, compare with questions[i].answer
             // if correct
                 // append "Correct!" to feedback span
             // if incorrect
                 // append "Incorrect" to feedback span
                 // reduce timer remainder by 5 seconds
-        // append next question to "question-span"
-            // repeat above steps
     // When all questions are exhausted
         // hide "questions-page" and display "end-page"
         // save current time to local storage

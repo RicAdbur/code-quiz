@@ -25,7 +25,7 @@ header {
 
 #start-button {
     display: block;
-    width: 50%;
+    width: 40%;
     border: none;
     background-color: royalblue;
     font-size: 24px;
@@ -67,6 +67,23 @@ section p {
     font-size: 18px;
 }
 
-#questions-page {
-    text-align: left;
+#question-span {
+    font-size: 18px;
+}
+
+#questions-page li {
+    padding: 5px;
+    margin 10px;
+    display: inline-block;
+}
+
+#questions-page button {
+    border: none;
+    background-color: royalblue;
+    font-size: 24px;
+    text-align: center;
+    padding: 5px;
+    margin: 0 auto;
+    border-radius: 10px;
+    cursor: pointer;
 }
