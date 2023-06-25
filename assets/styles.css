@@ -18,12 +18,27 @@ header {
     color: white;
     margin-bottom: 10px;
 }
-header a {
+
+#high-score-link {
     color: white;
+}
+
+#start-button {
+    display: block;
+    width: 50%;
+    border: none;
+    background-color: royalblue;
+    font-size: 24px;
+    text-align: center;
+    padding: 5px;
+    margin: 0 auto;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 h1 {
     font-size: 48px;
+    font-weight: bold;
 }
 
 h2 {
@@ -44,4 +59,14 @@ section {
     margin: 5px;
     padding: 5px;
     width: 90%;
+    text-align: center;
+}
+
+section p {
+    margin: 5px;
+    font-size: 18px;
+}
+
+#questions-page {
+    text-align: left;
 }
