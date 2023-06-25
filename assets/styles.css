@@ -46,7 +46,6 @@ h2 {
 }
 
 #container {
-    border: 2px solid black;
     margin: 0 auto;
     width: 75%;
     display: flex;
@@ -73,7 +72,6 @@ section p {
 
 #questions-page li {
     padding: 5px;
-    margin 10px;
     display: inline-block;
 }
 
@@ -86,4 +84,8 @@ section p {
     margin: 0 auto;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }

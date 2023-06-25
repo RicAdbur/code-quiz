@@ -6,15 +6,18 @@ var choiceButton1 = document.getElementById("choice1")
 var choiceButton2 = document.getElementById("choice2")
 var choiceButton3 = document.getElementById("choice3")
 var choiceButton4 = document.getElementById("choice4")
+var choiceButtons = []
 var scoreDisplay = document.getElementById("score-display");
 var inputInitials = document.getElementById("initials");
 var submitButton = document.getElementById("submit-score-button");
 var feedbackSpan = document.getElementById("feedback")
+var returnButton = document.getElementById("return-button")
 
 
 // Defining other global variables
+var time = 10;
 var score = 0;
-var initials = ""
+var initials = "";
 var completedTime
 
 
@@ -54,12 +57,30 @@ console.log(questions[0].question);
 console.log(questions[0].choices[0]);
 console.log(questions[0].answer);
 
+function getChoices() {
+    for (var i = 0; i < questions.length; i++) {
+        console.log(questions[i].choices)
+    }
+}
+
 // Begin pseudocode
 
 // Page opens with "start-page" displayed and other sections hidden
     // press startButton
-        // hide "start-page" and display "questions-page"
+    function start() {
         // start timer countdown
+        var timerInterval = setInterval(function() {
+            timer.innerText = time
+            time--
+
+            if(time === 0) {
+                clearInterval(timerInterval)
+            }
+        }, 1000)
+        // hide "start-page" and display "questions-page"
+        document.getElementById("start-page").classList.add("hidden");
+        document.getElementById("questions-page").classList.remove("hidden");
+    }
         // append first question to "question-span"
         // append choices for that question to <ul> beneath "question-span"
     // Select a choice
@@ -69,15 +90,13 @@ console.log(questions[0].answer);
             // if incorrect
                 // append "Incorrect" to feedback span
                 // reduce timer remainder by 5 seconds
-    // When all questions are exhausted
+    // When all questions are exhausted OR time runs out
+        // stop timer
         // hide "questions-page" and display "end-page"
-        // save current time to local storage
-    // If timer runs out before questions are exhausted
-        // hide "questions-page" and display "end-page"
-    // user types initials into #initials input field on "end-page"
+        // user types initials into #initials input field on "end-page"
     // User clicks submit button on "end-page"
-        // store user's initials, quiz score, and time values in local storage
+        // store user's initials and quiz score in local storage
         // hide "end-page" and display "highscore-page"
-        // append user's initials, quiz score, and time values to "highscore-page"
+        // append user's initials and quiz score to "highscore-page" from local storage
     // User clicks "return-button"
         // hide "highscores-page" and display "start-page"
