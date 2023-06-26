@@ -9,12 +9,17 @@ var submitButton = document.getElementById("submit-score-button");
 var feedback = document.getElementById("feedback")
 var returnButton = document.getElementById("return-button")
 var questionSpan = document.getElementById("question-span")
+var startPage =  document.getElementById("start-page")
+var questionsPage = document.getElementById("questions-page")
+var highScorePage = document.getElementById("highscore-page")
+var endPage = document.getElementById("end-page")
 
 // Defining other global variables
 var time = 10;
 var score = 0;
 var initials = "";
 var questionIndex = 0;
+var timerInterval
 
 // Each question will be stored as an object inside an array
 var questions = [
@@ -59,11 +64,20 @@ function showQuestion() {
     }
 }
 
+// View high scores page
+function showHighScores () {
+    startPage.classList.add("hidden");
+    questionsPage.classList.add("hidden");
+    questionsPage.classList.add("hidden");
+    highScorePage.classList.remove("hidden");
+}
+highScoreLink.onclick = showHighScores;
+
 // Page opens with "start-page" displayed and other sections hidden
 // press startButton
 function start() {
     // start timer countdown
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
         time--
         timer.innerText = time
 
@@ -72,8 +86,8 @@ function start() {
         }
     }, 1000)
     // hide "start-page" and display "questions-page"
-    document.getElementById("start-page").classList.add("hidden");
-    document.getElementById("questions-page").classList.remove("hidden");
+    startPage.classList.add("hidden");
+    questionsPage.classList.remove("hidden");
     // append first question to "question-span"
     // append choices for that question to <ul> beneath "question-span"
     showQuestion()
@@ -89,9 +103,8 @@ for (let i = 0; i < choiceButtons.length; i++) {
             feedback.innerText = "Correct!"
             feedback.style.backgroundColor = "green"
             // increase score value
-            scoreDisplay.innerText = score;
             score++
-
+            scoreDisplay.innerText = score;
         } else {
             // add message "Incorrect" to feedback span
             feedback.innerText = "Incorrect"
@@ -99,16 +112,23 @@ for (let i = 0; i < choiceButtons.length; i++) {
             // decrease score value
             score--
             // reduce timer remainder by 5 seconds
-
+            time -= 5
         }
         questionIndex++
-        showQuestion()
+        // When all questions are exhausted OR time runs out
+        if (questionIndex === questions.length || time <= 0) {
+            // stop timer
+            clearInterval(timerInterval)
+            // hide "questions-page" and display "end-page"
+            questionsPage.classList.add("hidden");
+            endPage.classList.remove("hidden");
+            // user types initials into #initials input field on "end-page"
+        } else {
+            showQuestion()
+        }
     })
 }
-    // When all questions are exhausted OR time runs out
-        // stop timer
-        // hide "questions-page" and display "end-page"
-        // user types initials into #initials input field on "end-page"
+
     // User clicks submit button on "end-page"
         // store user's initials and quiz score in local storage
         // hide "end-page" and display "highscore-page"
