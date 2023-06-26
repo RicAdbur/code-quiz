@@ -25,6 +25,7 @@ header {
     display: block;
     width: 40%;
     border: none;
+    color: white;
     background-color: royalblue;
     font-size: 24px;
     text-align: center;
@@ -52,11 +53,13 @@ h2 {
 }
 
 section {
-    border: 2px solid black;
-    margin: 5px;
-    padding: 5px;
+    border: 3px double black;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
     width: 90%;
     text-align: center;
+    background-color: white;
 }
 
 section p {
@@ -75,6 +78,7 @@ section p {
 
 #questions-page button {
     border: none;
+    color: white;
     background-color: royalblue;
     font-size: 24px;
     text-align: center;
@@ -88,7 +92,8 @@ section p {
     display: inline-block;
     margin-top: 30px;
     padding: 5px;
-    border: 2px solid black;
+    border-radius: 10px;
+    color: white;
 }
 
 .hidden {

@@ -84,15 +84,17 @@ for (let i = 0; i < choiceButtons.length; i++) {
     choiceButtons[i].addEventListener("click", function(event) {
         console.log(event)
     // check event.target.innerText and compare to innerText of questions[questionIndex].answer
-        if (event.target.innerText === questions[questionIndex].answer.innerText) {
+        if (event.target.innerText === questions[questionIndex].answer) {
             // Add message "Correct!" to feedback span
             feedback.innerText = "Correct!"
+            feedback.style.backgroundColor = "green"
             // increase score value
             score++
 
         } else {
             // add message "Incorrect" to feedback span
             feedback.innerText = "Incorrect"
+            feedback.style.backgroundColor = "red"
             // decrease score value
             score--
             // reduce timer remainder by 5 seconds
