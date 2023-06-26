@@ -3,22 +3,18 @@ var highScoreLink = document.getElementById("high-score-link");
 var timer = document.getElementById("timer");
 var startButton = document.getElementById("start-button");
 var choiceButtons = document.querySelectorAll("#user-choices button")
-var scoreDisplay = document.getElementById("score-display");
+var scoreDisplay = document.getElementsByClassName("score-display");
 var inputInitials = document.getElementById("initials");
 var submitButton = document.getElementById("submit-score-button");
-var feedbackSpan = document.getElementById("feedback")
+var feedback = document.getElementById("feedback")
 var returnButton = document.getElementById("return-button")
 var questionSpan = document.getElementById("question-span")
-
 
 // Defining other global variables
 var time = 10;
 var score = 0;
 var initials = "";
-var completedTime
 var questionIndex = 0;
-
-
 
 // Each question will be stored as an object inside an array
 var questions = [
@@ -28,22 +24,22 @@ var questions = [
         answer: "Alerts"
     },
     {
-        text: "The condition in an if / else statement is enclosed within ____.",
+        text: "The condition in an if/else statement is enclosed within _____.",
         choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
         answer: "parentheses"
     },
     {
-        text: "Arrays in Javascript can be used to store ____.",
+        text: "Arrays in Javascript can be used to store _____.",
         choices: ["numbers and strings", "other arrays", "booleans", "all of the above"],
         answer: "all of the above"
     },
     {
-        text: "String values must be enclosed within ____ when being assigned to variables.",
+        text: "String values must be enclosed within _____ when being assigned to variables.",
         choices: ["commas", "curly brackets", "quotes", "parentheses"],
         answer: "quotes"
     },
     {
-        text: "A very useful tool for used during development and debugging for printing content to the debugger is:",
+        text: "A very useful tool used during development and debugging for printing content to the debugger is:",
         choices: ["Javascript", "terminal / bash", "for loops", "console log"],
         answer: "console log"
     },
@@ -63,14 +59,11 @@ function showQuestion() {
     }
 }
 
-
-// Begin pseudocode
-
 // Page opens with "start-page" displayed and other sections hidden
 // press startButton
 function start() {
     // start timer countdown
-    var timerInterval = setInterval(function () {
+    var timerInterval = setInterval(function() {
         time--
         timer.innerText = time
 
@@ -92,13 +85,16 @@ for (let i = 0; i < choiceButtons.length; i++) {
         console.log(event)
     // check event.target.innerText and compare to innerText of questions[questionIndex].answer
         if (event.target.innerText === questions[questionIndex].answer.innerText) {
-            // append "Correct!" to feedback span
-            
+            // Add message "Correct!" to feedback span
+            feedback.innerText = "Correct!"
             // increase score value
+            score++
 
         } else {
-            // append "Incorrect" to feedback span
+            // add message "Incorrect" to feedback span
+            feedback.innerText = "Incorrect"
             // decrease score value
+            score--
             // reduce timer remainder by 5 seconds
 
         }
