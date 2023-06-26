@@ -3,7 +3,7 @@ var highScoreLink = document.getElementById("high-score-link");
 var timer = document.getElementById("timer");
 var startButton = document.getElementById("start-button");
 var choiceButtons = document.querySelectorAll("#user-choices button")
-var scoreDisplay = document.getElementsByClassName("score-display");
+var scoreDisplay = document.getElementById("score-display");
 var inputInitials = document.getElementById("initials");
 var submitButton = document.getElementById("submit-score-button");
 var feedback = document.getElementById("feedback")
@@ -89,6 +89,7 @@ for (let i = 0; i < choiceButtons.length; i++) {
             feedback.innerText = "Correct!"
             feedback.style.backgroundColor = "green"
             // increase score value
+            scoreDisplay.innerText = score;
             score++
 
         } else {
