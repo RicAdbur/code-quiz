@@ -15,9 +15,9 @@ var highScorePage = document.getElementById("highscore-page")
 var endPage = document.getElementById("end-page")
 
 // Defining other global variables
-var time = 10;
+var time = 60;
 var score = 0;
-var initials = "";
+// var initials = "";
 var questionIndex = 0;
 var timerInterval
 
@@ -64,14 +64,36 @@ function showQuestion() {
     }
 }
 
+function gameOver() {
+        // stop timer
+        clearInterval(timerInterval)
+        // hide "questions-page" and display "end-page"
+        questionsPage.classList.add("hidden");
+        endPage.classList.remove("hidden");
+        // user types initials into #initials input field on "end-page"
+        submitButton.addEventListener("click", function() {
+            localStorage.setItem("initials", inputInitials.value)
+            localStorage.setItem("score", score)
+            localStorage.getItem("")
+        })
+}
+
 // View high scores page
 function showHighScores () {
     startPage.classList.add("hidden");
     questionsPage.classList.add("hidden");
-    questionsPage.classList.add("hidden");
+    endPage.classList.add("hidden");
     highScorePage.classList.remove("hidden");
 }
 highScoreLink.onclick = showHighScores;
+
+function goBack() {
+    startPage.classList.remove("hidden");
+    questionsPage.classList.add("hidden");
+    endPage.classList.add("hidden");
+    highScorePage.classList.add("hidden");
+}
+returnButton.onclick = goBack;
 
 // Page opens with "start-page" displayed and other sections hidden
 // press startButton
@@ -80,9 +102,11 @@ function start() {
     timerInterval = setInterval(function() {
         time--
         timer.innerText = time
-
-        if (time === 0) {
-            clearInterval(timerInterval)
+        if (time < 10) {
+            timer.innerText = "0"+time
+        }
+        if (time <= 0) {
+            gameOver()
         }
     }, 1000)
     // hide "start-page" and display "questions-page"
@@ -117,23 +141,43 @@ for (let i = 0; i < choiceButtons.length; i++) {
         questionIndex++
         // When all questions are exhausted OR time runs out
         if (questionIndex === questions.length || time <= 0) {
-            // stop timer
-            clearInterval(timerInterval)
-            // hide "questions-page" and display "end-page"
-            questionsPage.classList.add("hidden");
-            endPage.classList.remove("hidden");
-            // user types initials into #initials input field on "end-page"
+            gameOver()
         } else {
             showQuestion()
         }
     })
 }
 
+// var highScoresArray = [
+//   {
+//     initials: 'JTN',
+//     score: 10
+//   }
+// ]
+// localStorage.setItem('highscores', JSON.stringify(scores))
+
+// pull from local storage and parse
+// var savedScores = JSON.parse(localStorage.getItem('highscores')) || []
+// add new data
+// var score2 = { initials: "TAJP", score: 11}
+// savedScores.push(score2)
+// stringify and save updated array
+// localStorage.setItem('highscores', JSON.stringify(savedScores))
+
     // User clicks submit button on "end-page"
+    submitButton.addEventListener("click", function() {
+        console.log(inputInitials.value)
         // store user's initials and quiz score in local storage
+        localStorage.setItem("Initials", inputInitials.value)
+        localStorage.setItem("Score", score)
         // hide "end-page" and display "highscore-page"
+        endPage.classList.add("hidden");
+        highScorePage.classList.remove("hidden")
         // append user's initials and quiz score to "highscore-page" from local storage
+
+    })
     // User clicks "return-button"
         // hide "highscores-page" and display "start-page"
 
 startButton.addEventListener("click", start)
+timer.innerText = time
