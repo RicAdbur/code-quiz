@@ -13,11 +13,11 @@ var startPage =  document.getElementById("start-page")
 var questionsPage = document.getElementById("questions-page")
 var highScorePage = document.getElementById("highscore-page")
 var endPage = document.getElementById("end-page")
+var highScores = document.getElementById("high-scores")
 
 // Defining other global variables
 var time = 60;
 var score = 0;
-// var initials = "";
 var questionIndex = 0;
 var timerInterval
 
@@ -64,17 +64,38 @@ function showQuestion() {
     }
 }
 
+// concept for high score board
+// var highScoresArray = [
+//   {
+//     initials: 'JTN',
+//     score: 10
+//   }
+// ]
+// localStorage.setItem('highscores', JSON.stringify(scores))
+
+// pull from local storage and parse
+// var savedScores = JSON.parse(localStorage.getItem('highscores')) || []
+// add new data
+// var score2 = { initials: "TAJP", score: 11}
+// savedScores.push(score2)
+// stringify and save updated array
+// localStorage.setItem('highscores', JSON.stringify(savedScores))
+
 function gameOver() {
         // stop timer
         clearInterval(timerInterval)
         // hide "questions-page" and display "end-page"
         questionsPage.classList.add("hidden");
         endPage.classList.remove("hidden");
-        // user types initials into #initials input field on "end-page"
+        // User clicks submit button on "end-page"
         submitButton.addEventListener("click", function() {
+            // hide "end-page" and display "highscore-page"
+            endPage.classList.add("hidden");
+            highScorePage.classList.remove("hidden")
+            // append user's initials and quiz score to "highscore-page" from local storage
             localStorage.setItem("initials", inputInitials.value)
             localStorage.setItem("score", score)
-            localStorage.getItem("")
+            highScores.textContent = localStorage.getItem("initials") + " : " + localStorage.getItem("score")
         })
 }
 
@@ -147,37 +168,6 @@ for (let i = 0; i < choiceButtons.length; i++) {
         }
     })
 }
-
-// var highScoresArray = [
-//   {
-//     initials: 'JTN',
-//     score: 10
-//   }
-// ]
-// localStorage.setItem('highscores', JSON.stringify(scores))
-
-// pull from local storage and parse
-// var savedScores = JSON.parse(localStorage.getItem('highscores')) || []
-// add new data
-// var score2 = { initials: "TAJP", score: 11}
-// savedScores.push(score2)
-// stringify and save updated array
-// localStorage.setItem('highscores', JSON.stringify(savedScores))
-
-    // User clicks submit button on "end-page"
-    submitButton.addEventListener("click", function() {
-        console.log(inputInitials.value)
-        // store user's initials and quiz score in local storage
-        localStorage.setItem("Initials", inputInitials.value)
-        localStorage.setItem("Score", score)
-        // hide "end-page" and display "highscore-page"
-        endPage.classList.add("hidden");
-        highScorePage.classList.remove("hidden")
-        // append user's initials and quiz score to "highscore-page" from local storage
-
-    })
-    // User clicks "return-button"
-        // hide "highscores-page" and display "start-page"
 
 startButton.addEventListener("click", start)
 timer.innerText = time
